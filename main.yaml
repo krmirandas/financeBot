@@ -1,0 +1,40 @@
+settings:
+    name: CHATVOICE
+
+conversations:
+    - 'options.yaml'
+
+regex:
+    name:
+        - '(.*)'
+    help:
+        - '.*'
+
+slots:
+    - gretting
+    - name
+    - help
+    - farewell
+
+
+strategies:
+    gretting: 
+        - say "Mucho gusto, soy un CHATBOT asistente de BBVA"
+    name:
+        - say '¿cual es tu nombre?'
+        - input name | regex name
+        - say f'¡Hola {name}! Espero que estes bien, ¿En que puedo ayudarte?'
+    help:
+        - say "Puedo ayudarte con estos temas"
+        - say "1 - Reposición de tarjeta, robo o extravío"
+        - say "2 - Cambio de dirección"
+        - say "3 - Solicitar una tarjeta de credito"
+        - say "Para un tema externo a los anteriores, visita la pagina www.bbva.com"
+        - say "Ahora dime, ¿con que te gustaría que te ayudará?"
+        - say "Por favor, seleccióna la opción"
+    farewell:
+        - say f'¡Adiós {name}!'
+
+script:
+    - loop_slots
+    - solve options
