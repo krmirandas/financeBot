@@ -1,0 +1,19 @@
+script:
+    - say "Vamos a cambiar su dirección..."
+    - say "¿En qué estado se encuentra su nueva dirección?"
+    - input estado
+    - say "¿En qué municipio o delegación?"
+    - input mun_del
+    - say "¿En qué calle se encuentra su nueva dirección?"
+    - input calle
+    - say "¿Cuál es el número de su nueva dirección?"
+    - input numero
+    - say "¿Tiene usted número interior?"
+    - input num_int | yesno
+    - if num_int==True then say "¿Cuál es su número interior?"
+    # como ponemos un bloque en condiciones
+    - say "Entre qué calles se encuentra su nueva dirección"
+    - input calles
+    - say "Su nueva dirección ha quedado de la siguiente manera:"
+    - say "calle:{}. número:{}, municipio:{}".format(calle, numero, estado)
+    - say "Gracias por preferirnos, nos vemos luego {}".format(name)
