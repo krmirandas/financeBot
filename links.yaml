@@ -1,0 +1,6 @@
+plugins:
+    - links
+
+script:
+    - set_slot options 'card'
+    - links.execute('link',options)

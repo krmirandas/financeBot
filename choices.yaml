@@ -1,0 +1,8 @@
+conversations:
+    - 'links.yaml'
+
+script:
+    - input choice | asign 1:card 2:direction 3:credit
+    - if choice == 'direction' then say 'Ok, entonces, cambiemos tu dirección' 
+    - if choice == 'card' then say 'Lamento eso' 
+    - if choice == 'credit' then say 'Gracias por considerarnos'

@@ -1,5 +1,0 @@
-script:
-    - input option | asign 1:card 2:direction 3:credit
-    - if option == 'direction' then say 'Ok, entonces, cambiemos tu direction'
-    - if option == 'card' then say 'Lamento eso'
-    - if option == 'credit' then say 'Gracias por considerarnos'

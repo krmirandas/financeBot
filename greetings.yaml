@@ -1,0 +1,7 @@
+# Conversation example for simple hello
+
+plugins:
+    - greetings
+
+script:
+    - greetings.execute('greeting')
