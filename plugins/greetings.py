@@ -15,6 +15,6 @@ def execute(*args):
     if (now.hour) > 12 and (now.hour) < 19:
         msg = 'Buenos tardes'
     if (now.hour) > 19:
-        msg = 'Buenos noches'
+        msg = 'Buenas noches'
     return 'set_slot {0} "{1}"'.format(var,msg)
 

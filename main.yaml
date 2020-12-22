@@ -4,11 +4,14 @@ settings:
 conversations:
     - 'choices.yaml'
     - 'greetings.yaml'
+    - 'currency.yaml'
     
 regex:
     name:
         - '(.*)'
     help:
+        - '.*'
+    coin:
         - '.*'
 
 slots:
@@ -21,22 +24,20 @@ dbs:
 
 strategies:
     gretting: 
-        - say "Soy Vango, un CHATBOT asistente de BBVA"
+        - say "Soy Vangho, tu asistente financiero"
     name:
         - say '¿Cuál es tu nombre?'
         - input name | regex name
         - remember name
     help:
-        - say "Mucho gusto en saludarte, {}.\n¿Cómo puedo ayudarte hoy?.\nPuedo ayudarte con estos temas".format(name)
-        - say "Reposición de tarjeta, robo, o extravío.\nCambio de domicilio.\nSolicitar una tarjeta de credito."
-        - say "Para un tema externo a los anteriores, visita la pagina www.bbva.com"
-        - say "Ahora, ¿con que te gustaría que te ayudara?"
-        - say "Por favor, seleccióna la opción"
-    farewell:
-        - say f'¡Adiós {name}!'
+        - say "Hola, {}.".format(name)
+    coin:
+        - say '¿Cuál es el código de tu moneda?'
+        - input coin | regex coin
+        - remember coin
 
 script:
     - solve greetings
     - say greeting
     - loop_slots
-    - solve choices
+    - solve currency
