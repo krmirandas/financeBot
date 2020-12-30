@@ -25,10 +25,17 @@ mycol = mydb["currencies"]
 mydoc = mycol.find_one({"code": "MXN"})
 
 
+# ISO international standard – 4217 to get the currency acronym with
+# the ordinary name
 def execute(*args):
     var = args[0]
-    opts = args[1]
+    opts = args[1].upper()
     mydoc = mycol.find_one({"code": opts})
+
+    if mydoc is None:
+        msg = "Ingresaste un acrónomo incorrecto"
+        return 'set_slot {0} "{1}"'.format(var, msg)
+    
     msg = "Tu moneda es {}. ".format(mydoc['name'])
     msg += "Su valor actual frente al dolar es {}{}".format(
         mydoc['code'], round(data['rates'][opts], 2))
