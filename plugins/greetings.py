@@ -18,3 +18,8 @@ def execute(*args):
         msg = 'Buenas noches'
     return 'set_slot {0} "{1}"'.format(var,msg)
 
+def help(*args):
+    print(">>>>")
+    var=args[0]
+    msg = ':v'
+    return 'set_slot {0} "{1}"'.format(var,msg)
