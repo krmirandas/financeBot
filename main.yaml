@@ -1,10 +1,11 @@
 settings:
-    name: CHATVOICE
+    name: VANGHO
 
 conversations:
-    - 'choices.yaml'
     - 'greetings.yaml'
     - 'currency.yaml'
+    - 'exchange.yaml'
+    - 'exchange.yaml'
     
 regex:
     name:
@@ -32,7 +33,7 @@ strategies:
     help:
         - say "Hola, {}.".format(name)
     coin:
-        - say '¿Cuál es el código de tu moneda?'
+        - say '¿Cuál es el código de tu moneda? lol'
         - input coin | regex coin
         - remember coin
 
@@ -41,3 +42,5 @@ script:
     - say greeting
     - loop_slots
     - solve currency
+    - solve exchange
+    - say "hola uwu"

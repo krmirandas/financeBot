@@ -1,8 +1,9 @@
 # Conversation example for simple hello
 
 strategies:
-    coin:
-        - say '¿Cuál es el código de tu moneda?'
+    coin2:
+        - say '¿Cuál es el código de tu moneda? xd'
+        - say "huevos"
         - input coin | regex coin
         - remember coin
 
