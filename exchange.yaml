@@ -1,0 +1,14 @@
+strategies:
+    get_coin:
+        - say 'Tu moneda es {}'.format(coin)
+        - say '¿A qué moneda te gustaría hacer el cambio?'
+        - input ex_coin
+        - remember ex_coin
+
+plugins:
+    - exchange
+
+script:
+    - solve get_coin
+    - exchange.execute('final_ex', ex_coin, coin)
+    - say final_ex

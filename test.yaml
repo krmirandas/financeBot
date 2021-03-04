@@ -1,0 +1,10 @@
+strategies:
+    say_test:
+        - say 'this is a test'
+
+plugins:
+    - test
+
+script:
+    - solve say_test
+    - test.help()
