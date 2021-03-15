@@ -1,0 +1,28 @@
+
+
+strategies:
+
+  currencies:
+    - say "En esta operación serás capaz de elegir si un deseas invertir en las diferentes divisas del mundo."
+    - say "Y decidiras con mi ayuda, la opción que mejor te conviene."
+    # - say "Ingresa el segundo numero"
+    # - input sumando2
+    # - operations.operations_basic('suma', sumando1, sumando2) 
+    # - say result    - say "En esta operación serás capaz de elegir si un deseas invertir en las diferentes divisas del mundo."
+    - say "Y decidiras con mi ayuda, la opción que mejor te conviene."
+
+  stocks:
+    - say "En esta operación serás capaz de elegir si un deseas invertir en las diferentes divisas del mundo."
+    - say "Y decidiras con mi ayuda, la opción que mejor te conviene."
+
+  menu:
+    - say "Por favor, elije una opción."
+    - say "1. Ver compañias en que invertir"
+    - say "2. MOnedas en que invertir"
+    - input opcion 
+    - if opcion == "1" then solve currencies 
+    - if opcion == "2" then solve stocks
+
+script:
+  - solve menu
+      

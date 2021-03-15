@@ -5,7 +5,7 @@ conversations:
     - 'greetings.yaml'
     - 'currency.yaml'
     - 'exchange.yaml'
-    - 'exchange.yaml'
+    - 'conversations/options.yaml'
     
 regex:
     name:
@@ -39,6 +39,7 @@ strategies:
 
 script:
     - solve greetings
+    - solve options
     - say greeting
     - loop_slots
     - solve currency
