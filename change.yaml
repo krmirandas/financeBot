@@ -14,4 +14,6 @@ plugins:
 
 script:
     - solve ask_change
-    - if ans then solve ask_value
+    - if ans==True then solve ask_value
+    - if ans==False then say 'Okey, fue un gusto.'
+    - if ans==False then exit(1)
