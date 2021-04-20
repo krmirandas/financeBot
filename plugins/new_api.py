@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, timedelta
 import io
 import json
 import os
@@ -12,7 +12,7 @@ base = '?base='
 amount = '&amount='
 
 content_exchange_api = None
-date = 'latest'
+date = 'latest' #yyyy-mm-dd
 currencies = None
 
 def init_db(ex_api):
@@ -70,3 +70,28 @@ def get_dollar(*args):
     msg += 'Su valor actual frente al dolar es {} {}'.format(
         currencies['USD'], 'USD')
     return 'set_slot {0} "{1}"'.format(var, msg)
+
+def recomend(*args):
+    var = args[0]
+    ex_coin = args[1].upper()
+    coin = args[2].upper()
+    msg = ''
+    d1 = datetime.today() - timedelta(days=0)
+    date = d1.strftime("%Y-%m-%d")
+    ex_api = exchange_api + date + base + coin
+    init_db(ex_api)
+    val1 = currencies[ex_coin]
+
+    d2 = datetime.today() - timedelta(days=1)
+    date = d2.strftime("%Y-%m-%d")
+    ex_api = exchange_api + date + base + coin
+    init_db(ex_api)
+    val2 = currencies[ex_coin]
+
+    r = val2 - val1
+    if r > 0:
+        msg = 'Recomiendamos comprar {}'.format(ex_coin)
+        return 'set_slot {0} "{1}"'.format(var, msg)
+    else:
+        msg = 'No recomiendamos comprar {}, tal vez mañana'.format(ex_coin)
+        return 'set_slot {0} "{1}"'.format(var, msg)
