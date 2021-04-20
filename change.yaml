@@ -1,0 +1,17 @@
+strategies:
+    ask_change:
+        - say '¿Te gustaría cambiar tu moneda {} por {}?'.format(coin, ex_coin)
+        - input ans | yesno
+
+    ask_value:
+        - say '¿Con cuánto dinero({}) dispones para la compra?'.format(coin)
+        - input value
+        - new_api.change('return_value', ex_coin, coin, value)
+        - say return_value
+
+plugins:
+    - new_api
+
+script:
+    - solve ask_change
+    - if ans then solve ask_value
