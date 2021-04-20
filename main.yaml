@@ -7,6 +7,7 @@ conversations:
     - 'exchange.yaml'
     - 'exchange.yaml'
     - 'change.yaml'
+    - 'recomend.yaml'
     
 regex:
     name:
@@ -45,3 +46,4 @@ script:
     - solve currency
     - solve exchange
     - solve change
+    - solve recomend
