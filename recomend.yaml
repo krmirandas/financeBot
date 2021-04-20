@@ -1,0 +1,15 @@
+strategies:
+    ask_recomend:
+        - say '¿Te gustaría que VANGHO te recomiende si es o no buena idea comprar {}?'.format(ex_coin)
+        - input ans_rec | yesno
+
+    make_recomend:
+        - new_api.recomend('rec', ex_coin, coin)
+        - say rec
+
+plugins:
+    - new_api
+
+script:
+    - solve ask_recomend
+    - if ans_rec then solve make_recomend
