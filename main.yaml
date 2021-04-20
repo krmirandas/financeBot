@@ -6,6 +6,7 @@ conversations:
     - 'currency.yaml'
     - 'exchange.yaml'
     - 'exchange.yaml'
+    - 'change.yaml'
     
 regex:
     name:
@@ -43,4 +44,4 @@ script:
     - loop_slots
     - solve currency
     - solve exchange
-    - say "hola uwu"
+    - solve change

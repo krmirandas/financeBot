@@ -6,9 +6,9 @@ strategies:
         - remember ex_coin
 
 plugins:
-    - exchange
+    - new_api
 
 script:
     - solve get_coin
-    - exchange.execute('final_ex', ex_coin, coin)
+    - new_api.execute('final_ex', ex_coin, coin)
     - say final_ex
