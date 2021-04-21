@@ -6,14 +6,19 @@ import pymongo
 import requests
 import time
 
+myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+mydb = myclient["financeBot"]
+mycol = mydb["currencies"]
+
 exchange_api = 'https://api.exchangerate.host/'
 
 base = '?base='
 amount = '&amount='
 
 content_exchange_api = None
-date = 'latest' #yyyy-mm-dd
+date = 'latest'  # yyyy-mm-dd
 currencies = None
+
 
 def init_db(ex_api):
     global content_exchange_api
@@ -23,6 +28,7 @@ def init_db(ex_api):
     data = json.loads(content_exchange_api)
     currencies = data['rates']
 
+
 def execute(*args):
     var = args[0]
     ex_coin = args[1].upper()
@@ -30,7 +36,7 @@ def execute(*args):
     msg = ''
     ex_api = exchange_api + date + base + coin
     init_db(ex_api)
-    
+
     if ex_coin not in currencies:
         msg = 'Ingresaste un acrónimo incorrecto.'
         return 'set_slot {0} "{1}"'.format(var, msg)
@@ -38,6 +44,7 @@ def execute(*args):
     msg += 'El valor actual de tu moneda {} contra {} es de {}'.format(
         coin, ex_coin, val_coin)
     return 'set_slot {0} "{1}"'.format(var, msg)
+
 
 def change(*args):
     var = args[0]
@@ -52,8 +59,10 @@ def change(*args):
         msg = 'Ingresaste un acrónimo incorrecto.'
         return 'set_slot {0} "{1}"'.format(var, msg)
     val_ret = currencies[ex_coin]
-    msg = 'Pagando {} {}, obtendrías: {} {}'.format(val, coin, val_ret, ex_coin)
+    msg = 'Pagando {} {}, obtendrías: {} {}'.format(
+        val, coin, val_ret, ex_coin)
     return 'set_slot {0} "{1}"'.format(var, msg)
+
 
 def get_dollar(*args):
     var = args[0]
@@ -65,11 +74,12 @@ def get_dollar(*args):
     if coin not in currencies:
         msg = 'Ingresaste un acrónimo incorrecto.'
         return 'set_slot {0} "{1}"'.format(var, msg)
-
-    msg = 'Tu moneda es {} '.format(coin)
-    msg += 'Su valor actual frente al dolar es {} {}'.format(
+    coin_ = mycol.find_one({"code": coin})
+    msg = 'Tu moneda es {},'.format(coin_['name'])
+    msg += 'su valor actual frente al dolar es {} {}'.format(
         currencies['USD'], 'USD')
     return 'set_slot {0} "{1}"'.format(var, msg)
+
 
 def recomend(*args):
     var = args[0]
