@@ -1,19 +1,27 @@
 \documentclass{article}
+
+\usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
-\pagenumbering{Roman}
-\usepackage{ragged2e}
+\usepackage{color}
 \usepackage{graphicx}
-\usepackage{wrapfig}
 \usepackage{hyperref}
+\usepackage{listings}
+\usepackage{ragged2e}
+\usepackage{wrapfig}
+
+\pagenumbering{Roman}
+\definecolor{lightgray}{rgb}{.7,.7,.7}%color
+\renewcommand{\lstlistingname}{}%edit label in lstlisting
+
 \hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=cyan,
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=magenta,      
+  urlcolor=cyan,
 }
 
 \title{\huge Como Instalar Finance Bot 1.0}
-\author{Galeana Araujo Emiliano \\ Miranda Sánchez Kevin Ricardo \\}
+\author{Galeana Araujo Emiliano \and Miranda Sánchez Kevin Ricardo}
 \date{Mayo 07 2020}
 
 \begin{document}
