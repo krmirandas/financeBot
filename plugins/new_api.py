@@ -5,10 +5,11 @@ import os
 import pymongo
 import requests
 import time
+import json
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
-mydb = myclient["financeBot"]
-mycol = mydb["currencies"]
+json_data = {}
+with open('conversations/financeBot/json/currencies.json') as json_file:
+    json_data = json.load(json_file)
 
 exchange_api = 'https://api.exchangerate.host/'
 
@@ -74,7 +75,7 @@ def get_dollar(*args):
     if coin not in currencies:
         msg = 'Ingresaste un acrónimo incorrecto.'
         return 'set_slot {0} "{1}"'.format(var, msg)
-    coin_ = mycol.find_one({"code": coin})
+    coin_ = json_data[coin]
     msg = 'Tu moneda es {},'.format(coin_['name'])
     msg += 'su valor actual frente al dolar es {} {}'.format(
         currencies['USD'], 'USD')
