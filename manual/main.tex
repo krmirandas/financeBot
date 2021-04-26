@@ -37,8 +37,14 @@ Un chatbot es un sistema computacional cuyo objetivo es sostener una conversaci�
 
 En esta propuesta usamos chatovoice basados en la tecnologia AIML que es un lenguaje de programación para chatbots basado en pattern matching de expresiones regulares y lo dicho por el usuario.
 
+\section{Finance Bot}
+
+\justifying
+Finance Bot es un sistema que te ayudar a elegir si te conviene invertir o no en una moneda.
+
 \newpage
 \section{Instalación}
+
 Primero es necesario copiar el repositorio donde esta \href{https://github.com/ivanvladimir/chatvoice}{Chatvoice}
 Una vez que se clona el repositorio, se debe abrir el Prompt de Anaconda y se debe ir a la ruta del repositorio clonado.\par
 
@@ -49,20 +55,81 @@ Abre el archivo environment.yml y elimine las líneas:
 \item torchvision=0.7.0
 \end{itemize}
 
-Para crear un ambiente:
-
-\begin{lstlisting}[frame=single,language=bash,caption=etiqueta]
-  npm install mocha -g
+Para añadir descargar el modulo de financeBot
+\begin{lstlisting}[frame=single,language=bash,caption=Crear ambiente]
+  $ git submodule init
 \end{lstlisting}
 
-% \begin{figure}[h]
-%     \includegraphics[scale=0.5]{cp1.png}
-%     \caption{Pantalla De Bienvenida}
+O bien
 
-% \end{figure}
-% Una vez que tengamos la pantalla de bienvenida a la vista, el proceso de instalacion habra comenzado, en este caso , debemos elegir el idioma en el que queremos que nuestro sistema operativo y todas las aplicaciones se muestren en pantalla , en este caso elegiremos español , una vez que eligamos un idioma para instalr , auntomaticamente el instalador cambiara de idioma como se muestra en la siguiente imagen.
-% \newpage
+\begin{lstlisting}[language=bash,caption=Crear ambiente]
+  $ git clone --recursive https://github.com/krmirandas/financeBot
+\end{lstlisting}
 
+Para crear un ambiente:
 
+\begin{lstlisting}[frame=single,language=bash,caption=Crear ambiente]
+  conda env create -f environment.yml
+\end{lstlisting}
+
+Si todo sale bien, aparecera un mensaje como el siguiente:
+
+\begin{lstlisting}[frame=single,language=bash,caption=Activar ambiente]
+  To activate this environment, use
+
+     $ conda activate cv
+
+To deactivate an active environment, use
+
+     $ conda deactivate
+\end{lstlisting}
+
+Para verificar que se creó el entorno, verifique la lista de entornos conda con el comando:
+
+\begin{lstlisting}[frame=single,language=bash,caption=Verificar ambiente]
+  $ conda info --envs
+\end{lstlisting}
+
+¿Dónde podemos ubicar el entorno cv creado que vamos a activar?
+
+\begin{lstlisting}[frame=single,language=bash,caption=Activar ambiente]
+  $ conda activate cv 
+\end{lstlisting}
+
+Actualicemos el ambiente
+
+\begin{lstlisting}[frame=single,language=bash,caption=Actualizar ambiente]
+  $ conda env update -f environment.yml
+\end{lstlisting}
+
+\section{Uso}
+
+Para ejecutar el ambiente
+
+\begin{lstlisting}[language=bash,caption=Correr chatbot]
+  $ python src/chatvoice.py conversations/financeBot/main.yaml
+\end{lstlisting}
+
+\begin{lstlisting}[frame=single,language=bash,caption=Resultado]
+  ROBOT: hola
+  USER: Jorge
+  ROBOT: mucho gusto en conocerte
+  USER: Bien!
+  ROBOT: Hay algunas cosas que se
+  ROBOT: hecho benito juarez nacio en un 21 marzo
+  ROBOT: adios Jorge
+\end{lstlisting}
+
+Con síntesis de Google
+Se tiene que instalar mpg321
+
+\begin{lstlisting}[language=bash,caption=Correr chatbot]
+  $ sudo apt install mpg321
+\end{lstlisting}
+
+Para correrlo
+\begin{lstlisting}[language=bash,caption=Correr chatbot]
+  $ python src/chatvoice.py conversations/financeBot/main.yaml --google_tts
+\end{lstlisting}
 
 \end{document}
